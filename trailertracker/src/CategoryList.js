@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Link from "react-router-dom";
+import { Link } from "react-router-dom";
 import OneCategory from "./OneCategory";
 
 class CategoryList extends Component {
