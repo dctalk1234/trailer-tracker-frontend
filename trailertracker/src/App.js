@@ -6,16 +6,16 @@ import About from './About';
 import Movie from "./Movie";
 import CategoryList from "./CategoryList";
 import OneCategory from "./OneCategory";
-import movieList from './movieData';
+import catList from "./categoryData.json";
 
 class App extends Component {
     constructor(props) {
         super(props);
     this.state = {
-        movie: movieList
+        cats: catList
     };
     }
-    showMovie(film) {
+    showCategory(film) {
         this.setState({
             title: film,
             trailer: film
@@ -40,7 +40,7 @@ class App extends Component {
                     <Switch>
                         <Route path="/" exact={true} component={CategoryList}/>
                         <Route path="/about" exact={true} component={About}/>
-                        <Route path="/movie/:title" exact={true} render={routerProps => <Movie film={this.showMovie} match={routerProps.match}/>}/>
+                        <Route path="/movie/:title" exact={true} render={routerProps => <Movie film={this.showCategory} match={routerProps.match}/>}/>
                         <Route path="/category" exact={true} component={OneCategory}/>
                     </Switch>
                 </main>
