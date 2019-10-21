@@ -7,6 +7,7 @@ class OneCategory extends Component {
         return(
             <div>
                 <h3>My Category!</h3>
+                <Link to="/CategoryList">Back To Home</Link>
             </div>
         )
     }
