@@ -18,12 +18,9 @@ class CategoryList extends Component {
         </div>
       );
     });
-    return (
-      <div>
-        <h2>Browse Our Massive List Of Box Office Classics!!</h2>
-        {movieCats}
-      </div>
-    );
+    return <div>
+     <h2>Browse Our Massive List Of Box Office Classics!</h2>
+    {movieCats}</div>;
   }
 }
 
