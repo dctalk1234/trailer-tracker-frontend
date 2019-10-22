@@ -1,12 +1,26 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import catList from "./categoryData.json";
+import axios from "axios";
 
 class CategoryList extends Component {
   constructor() {
     super();
   }
+  componentDidMount() {
 
+      axios.get(
+          'https://localhost:8080/category',
+          {title: ''},
+          {headers: {'Content-Type': 'application/json'}}
+      )
+          .then(res => {
+              console.log(res);
+          })
+          .catch(error => {
+              console.log(error);
+          })
+  }
   render() {
     let movieCats = catList.map(item => {
       return (

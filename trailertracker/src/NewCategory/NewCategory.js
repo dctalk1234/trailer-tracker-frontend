@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-
 export default class NewCategory extends Component {
     constructor() {
         super();
-
+        this.state = {
+            title: ''
+        };
+        this.handleChange = this.handleChange.bind(this);
     }
-    handleChange(evt) {
+    handleSubmit(evt) {
         axios.post(
             'https://localhost:8080/category',
-            { title: 'HAHAHA' },
+            { title: evt.target.value },
             { headers: { 'Content-Type': 'application/json'} }
         )
             .then(res => {
@@ -18,16 +20,21 @@ export default class NewCategory extends Component {
             })
 
     }
+    handleChange(evt) {
+        this.setState({ title: evt.target.value });
+        console.log(this.state.title);
+    }
     render() {
 
         return (
             <div>
                 <form>
-                    <label>Category <input type="text" placeholder="type category name" /> </label>
-                    <button onSubmit={this.handleChange} type="submit">Submit</button>
+                    <label>Category <input onChange={this.handleChange} type="text" placeholder="type category name" value={this.state.title}/> </label>
+                    <button onSubmit={this.handleSubmit} type="submit">Submit</button>
                 </form>
 
             </div>
         )
     }
 }
+
