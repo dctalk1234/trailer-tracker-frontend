@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import "./App.css";
 import { Route, Link, Switch } from "react-router-dom";
-import About from "./About";
-import Movie from "./Movie";
-import CategoryList from "./CategoryList";
-import OneCategory from "./OneCategory";
-import catList from "./categoryData.json";
-import UpdateCategory from "./UpdateCategory";
-import NewCategory from "./NewCategory";
+import About from "../About/About";
+import Movie from "../Movie/Movie";
+import CategoryList from "../CategoryList/CategoryList";
+import OneCategory from "../OneCategory/OneCategory";
+import catList from "../CategoryList/categoryData.json";
+import UpdateCategory from "../UpdateCategory/UpdateCategory";
+import NewCategory from "../NewCategory/NewCategory";
 
 class App extends Component {
   constructor(props) {

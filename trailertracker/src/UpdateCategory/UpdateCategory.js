@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import movieList from './movieData';
+import movieList from '../Movie/movieData';
 
 export default class UpdateCategory extends Component {
     constructor() {
