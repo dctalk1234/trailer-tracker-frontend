@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import catList from "./categoryData.json";
+import catList from "../CategoryList/categoryData.json";
 
 export default class OneCategory extends Component {
   render() {
