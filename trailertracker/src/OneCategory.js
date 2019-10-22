@@ -33,12 +33,12 @@ export default class OneCategory extends Component {
     let movieViews = [];
     for (let i = 0; i < chosenCategory.movies.length; i++) {
         let makeViews = document.createElement("div");
-        document.querySelector(".viewForm").appendChild(makeViews)
+        document.querySelector("#viewForm").appendChild(makeViews)
         } 
     }
 
     return (
-      <form className="viewForm">
+      <form id="viewForm">
           <h3>The Chosen Category is {chosenCategory.title}</h3>
           <div>
             <img
