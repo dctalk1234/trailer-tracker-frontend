@@ -8,6 +8,7 @@ export default class Movie extends Component {
                 <div >
                     <h3>{movie.title}</h3>
                     <iframe
+                        title={movie.title}
                         width="627"
                         height="470"
                         src={movie.trailer}
@@ -21,9 +22,5 @@ export default class Movie extends Component {
                 </div>
             );
 
-        return <div>
-            <h2>Checkout these movies!</h2>
-
-        </div>
     }
 }

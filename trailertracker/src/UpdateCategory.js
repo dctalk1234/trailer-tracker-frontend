@@ -13,9 +13,9 @@ export default class UpdateCategory extends Component {
         this.findMovie = this.findMovie.bind(this);
     }
     handleChange(evt) {
-        axios.post(
+        axios.put(
             'https://localhost:8080/category',
-            { title: 'HAHAHA' },
+            { title: evt.target.value },
         { headers: { 'Content-Type': 'application/json'} }
         )
             .then(res => {
