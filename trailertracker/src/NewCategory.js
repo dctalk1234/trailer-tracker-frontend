@@ -1,56 +1,61 @@
-import React, { Component } from "react";
-import axios from "axios";
-import catList from "./categoryData.json";
-import movieList from "./movieData";
+
+import React, { Component } from 'react';
+import axios from 'axios';
+import movieList from './movieData';
 
 export default class NewCategory extends Component {
-	constructor() {
-		super();
-		this.state = {
-			category: ""
-		};
-	}
-	handleChange(evt) {
-        console.log(evt);
-        evt.preventDefault();
-        
-        axios.post("http://localhost:8080/Category/", 
-        { title: "HAHAHA" }, 
-        { headers: { "Content-Type": "application/json" } })
-        .then(res => {
-			console.log(res);
-		}).catch(err => {
-            console.error(err);
-        });
-	}
-	render() {
-		// let filteredMovie = catList[0].movies.filter(
-		//     (movieTitle) => {
-		//         return movieTitle.title.indexOf(this.state.search) !== -1;
-		//     }
-		// );
-		return (
-			<div>
-				<form>
-					<label>
-						Category <input type="text" placeholder="type category name" />{" "}
-					</label>
-					<button onClick={this.handleChange} type="submit">
-						Submit
-					</button>
-				</form>
-				<label>
-					Movies <input type="text" placeholder="type movie title" value={this.state.search} />{" "}
-				</label>
+    constructor() {
+        super();
+        this.state = {
+            search: '',
+            movieList: movieList,
+            originalMovieList: movieList
+        };
+        this.findMovie = this.findMovie.bind(this);
+    }
+    handleChange(evt) {
+        axios.post(
+            'https://localhost:8080/category',
+            { title: 'HAHAHA' },
+        { headers: { 'Content-Type': 'application/json'} }
+        )
+            .then(res => {
+                console.log(res);
+            })
+    }
+    findMovie(evt) {
+    this.setState({ search: evt.target.value });
+    //console.log(evt.target.value);
 
-				<div>
-					{/*<ul >*/}
-					{/*    {filteredMovie.map((movie) => {*/}
-					{/*     return <NewCategory movie={movie.title}/>*/}
-					{/*    })}*/}
-					{/*</ul>*/}
-				</div>
-			</div>
-		);
-	}
+         let filteredMovie = this.state.originalMovieList.filter(
+             (movieTitle) => movieTitle.title.toLowerCase().includes(evt.target.value.toLowerCase()));
+             this.setState({movieList: filteredMovie});
+            console.log(filteredMovie);
+
+    }
+    render() {
+        console.log(this.state.search);
+        return (
+            <div>
+                <form>
+            <label>Category <input type="text" placeholder="type category name" /> </label>
+                    <button onSubmit={this.handleChange} type="submit">Submit</button>
+                </form>
+                <form>
+                <label>Movies <input onChange={this.findMovie} type="text" placeholder="type movie title" value={this.state.search}/> </label>
+
+                <div>
+                    <ul >
+
+                        {this.state.movieList.map((movieTitle) => {
+
+                            return <li key={movieTitle.title}>{movieTitle.title}</li>;
+                        })}
+
+                    </ul>
+                </div>
+                </form>
+            </div>
+        )
+    }
 }
