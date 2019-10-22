@@ -20,7 +20,9 @@ class CategoryList extends Component {
     });
     return <div>
      <h2>Browse Our Massive List Of Box Office Classics!</h2>
-    {movieCats}</div>;
+    {movieCats}
+        <Link to="/update">Update Categories</Link>
+    </div>;
   }
 }
 

@@ -7,6 +7,7 @@ import Movie from "./Movie";
 import CategoryList from "./CategoryList";
 import OneCategory from "./OneCategory";
 import catList from "./categoryData.json";
+import UpdateCategory from "./UpdateCategory";
 import NewCategory from "./NewCategory";
 
 class App extends Component {
@@ -47,6 +48,7 @@ class App extends Component {
                         <Route path="/about" exact={true} component={About}/>
                         <Route path="/movie/:title" exact={true} render={routerProps => <Movie film={this.showCategory} match={routerProps.match}/>}/>
                         <Route path="/category/:title" exact={true} render={routerProps => <OneCategory match={routerProps.match}/>}/>
+                        <Route path="/update" exact={true} component={UpdateCategory}/>
                     </Switch>
                 </main>
             </div>
