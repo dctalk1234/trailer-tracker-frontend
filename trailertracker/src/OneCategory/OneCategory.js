@@ -22,7 +22,17 @@ export default class OneCategory extends Component {
     for (let i = 0; i < chosenCategory.movies.length; i++) {
       moviePosters.push(chosenCategory.movies[i].poster);
     }
-    console.log(moviePosters)
+    console.log(moviePosters);
+    console.log(chosenCategory);
+
+    let poster = moviePosters.map(poster => {
+      console.log(poster);
+      return (
+        <a href="#">
+          <img key={poster} src={poster} alt="poster" />
+        </a>
+      );
+    });
 
     let movieYears = [];
     for (let i = 0; i < chosenCategory.movies.length; i++) {
@@ -30,23 +40,18 @@ export default class OneCategory extends Component {
     }
 
     function views() {
-    let movieViews = [];
-    for (let i = 0; i < chosenCategory.movies.length; i++) {
+      let movieViews = [];
+      for (let i = 0; i < chosenCategory.movies.length; i++) {
         let makeViews = document.createElement("div");
-        document.querySelector("#viewForm").appendChild(makeViews)
-        } 
+        document.querySelector("#viewForm").appendChild(makeViews);
+      }
     }
 
     return (
       <form id="viewForm">
-          <h3>The Chosen Category is {chosenCategory.title}</h3>
-          <div>
-            <img
-              width="150"
-              height="250"
-              src={moviePosters}
-              alt="movie poster"
-            ></img>
+        <h3>The Chosen Category is {chosenCategory.title}</h3>
+        <div>
+          {poster}
           <br></br>
         </div>
         <Link to="/">Back To Home</Link>
