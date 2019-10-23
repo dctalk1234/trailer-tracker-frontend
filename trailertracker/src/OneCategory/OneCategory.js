@@ -28,8 +28,9 @@ export default class OneCategory extends Component {
     let poster = moviePosters.map(poster => {
       console.log(poster);
       return (
-        <a href="#">
-          <img key={poster} src={poster} alt="poster" />
+        <a href="/">
+          {/* Change this */}
+          <img className="poster" key={poster} src={poster} alt="poster" />
         </a>
       );
     });
@@ -49,13 +50,15 @@ export default class OneCategory extends Component {
 
     return (
       <form id="viewForm">
-        <h3>The Chosen Category is {chosenCategory.title}</h3>
+        <h3 className="homeheader">The Chosen Category is {chosenCategory.title}</h3>
         <div>
           {poster}
           <br></br>
         </div>
-        <Link to="/">Back To Home</Link>
-        <a href={`/category/update/${chosenCategory.title}`}>Update this Category</a>
+        <Link to="/"><button className="backtoHome">Back To Home</button></Link>
+
+        <a href={`/category/update/${chosenCategory.title}`}><button className="updatecat">
+          Update this Category  </button></a>
       </form>
     );
   }

@@ -16,7 +16,7 @@ export default class NewCategory extends Component {
         axios.post(
             'http://localhost:8080/category',
             { title: newTitle },
-            { headers: { 'Content-Type': 'application/json'} }
+            { headers: { 'Content-Type': 'application/json' } }
         )
             .then(res => {
                 console.log(res);
@@ -33,7 +33,7 @@ export default class NewCategory extends Component {
         return (
             <div>
                 <form>
-                    <label>Category <input onChange={this.handleChange} type="text" placeholder="type category name" value={this.state.title}/> </label>
+                    <label>Category <input onChange={this.handleChange} type="text" placeholder="type category name" value={this.state.title} /> </label>
                     <button onClick={this.handleSubmit} type="submit">Submit</button>
                 </form>
 
