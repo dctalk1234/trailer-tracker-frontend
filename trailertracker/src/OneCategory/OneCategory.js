@@ -49,12 +49,12 @@ export default class OneCategory extends Component {
 
     return (
       <form id="viewForm">
-        <h3>The Chosen Category is {chosenCategory.title}</h3>
+        <h3 className="homeheader">The Chosen Category is {chosenCategory.title}</h3>
         <div>
           {poster}
           <br></br>
         </div>
-        <Link to="/">Back To Home</Link>
+        <Link to="/"><button className="backtohome-btn">Back To Home</button></Link>
       </form>
     );
   }

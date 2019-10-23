@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
+// import "../index.css";
+
 import { Route, Link, Switch } from "react-router-dom";
 import About from "../About/About";
 import Movie from "../Movie/Movie";
@@ -8,46 +10,48 @@ import OneCategory from "../OneCategory/OneCategory";
 import catList from "../CategoryList/categoryData.json";
 import UpdateCategory from "../UpdateCategory/UpdateCategory";
 import NewCategory from "../NewCategory/NewCategory";
+// import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      cats: catList
-    };
-  }
-  showCategory(film) {
-    this.setState({
-      title: film,
-      trailer: film
-    });
-  }
+    constructor(props) {
+        super(props);
+        this.state = {
+            cats: catList
+        };
+    }
+    showCategory(film) {
+        this.setState({
+            title: film,
+            trailer: film
+        });
+    }
 
     render() {
         return (
-            <div className="App">
+            <div className="App container">
                 <header>
-                    <nav>
+                    <ul className="nav">
                         <Link to="/">
-                            Home
+                            <li className="nav-item">Home</li>
                         </Link>
                         <Link to="/about">
-                            About
+                            <li className="nav-item">About</li>
                         </Link>
                         <Link to="/new">
-                            New Category
+                            <li className="nav-item"> New Category</li>
                         </Link>
 
-                    </nav>
+                    </ul>
                 </header>
                 <main>
                     <Switch>
-                        <Route path="/" exact={true} component={CategoryList}/>
-                        <Route path="/new" exact={true} component={NewCategory}/>
-                        <Route path="/about" exact={true} component={About}/>
-                        <Route path="/movie/:title" exact={true} render={routerProps => <Movie film={this.showCategory} match={routerProps.match}/>}/>
-                        <Route path="/category/:title" exact={true} render={routerProps => <OneCategory match={routerProps.match}/>}/>
-                        <Route path="/update" exact={true} component={UpdateCategory}/>
+                        <Route path="/" exact={true} component={CategoryList} />
+                        <Route path="/new" exact={true} component={NewCategory} />
+                        <Route path="/about" exact={true} component={About} />
+                        <Route path="/movie/:title" exact={true} render={routerProps => <Movie film={this.showCategory} match={routerProps.match} />} />
+                        <Route path="/category/:title" exact={true} render={routerProps => <OneCategory match={routerProps.match} />} />
+                        <Route path="/update" exact={true} component={UpdateCategory} />
                     </Switch>
                 </main>
             </div>

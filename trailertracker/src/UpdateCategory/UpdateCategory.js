@@ -16,43 +16,44 @@ export default class UpdateCategory extends Component {
         axios.put(
             'https://localhost:8080/category',
             { title: evt.target.value },
-        { headers: { 'Content-Type': 'application/json'} }
+            { headers: { 'Content-Type': 'application/json' } }
         )
             .then(res => {
                 console.log(res);
             })
     }
     findMovie(evt) {
-    this.setState({ search: evt.target.value });
-    //console.log(evt.target.value);
+        this.setState({ search: evt.target.value });
+        //console.log(evt.target.value);
 
-         let filteredMovie = this.state.originalMovieList.filter(
-             (movieTitle) => movieTitle.title.toLowerCase().includes(evt.target.value.toLowerCase()));
-             this.setState({movieList: filteredMovie});
-            console.log(filteredMovie);
+        let filteredMovie = this.state.originalMovieList.filter(
+            (movieTitle) => movieTitle.title.toLowerCase().includes(evt.target.value.toLowerCase()));
+        this.setState({ movieList: filteredMovie });
+        console.log(filteredMovie);
 
     }
     render() {
         console.log(this.state.search);
         return (
             <div>
+                <h2 className="homeheader ">Change later</h2>
                 <form>
-            <label>Category <input type="text" placeholder="type category name" /> </label>
+                    <label>Category <input type="text" placeholder="type category name" /> </label>
                     <button onSubmit={this.handleChange} type="submit">Submit</button>
                 </form>
                 <form>
-                <label>Movies <input onChange={this.findMovie} type="text" placeholder="type movie title" value={this.state.search}/> </label>
+                    <label>Movies <input onChange={this.findMovie} type="text" placeholder="type movie title" value={this.state.search} /> </label>
 
-                <div>
-                    <ul >
+                    <div>
+                        <ul >
 
-                        {this.state.movieList.map((movieTitle) => {
+                            {this.state.movieList.map((movieTitle) => {
 
-                            return <li key={movieTitle.title}>{movieTitle.title}</li>;
-                        })}
+                                return <li className="catmovie" key={movieTitle.title}>{movieTitle.title}</li>;
+                            })}
 
-                    </ul>
-                </div>
+                        </ul>
+                    </div>
                 </form>
             </div>
         )

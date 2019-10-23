@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import catList from "./categoryData.json";
 import axios from "axios";
+import "../App/App.css";
+
 
 class CategoryList extends Component {
   constructor() {
@@ -9,17 +11,17 @@ class CategoryList extends Component {
   }
   componentDidMount() {
 
-      axios.get(
-          'https://localhost:8080/category',
-          {title: ''},
-          {headers: {'Content-Type': 'application/json'}}
-      )
-          .then(res => {
-              console.log(res);
-          })
-          .catch(error => {
-              console.log(error);
-          })
+    axios.get(
+      'https://localhost:8080/category',
+      { title: '' },
+      { headers: { 'Content-Type': 'application/json' } }
+    )
+      .then(res => {
+        console.log(res);
+      })
+      .catch(error => {
+        console.log(error);
+      })
   }
   render() {
     let movieCats = catList.map(item => {
@@ -32,9 +34,9 @@ class CategoryList extends Component {
       );
     });
     return <div>
-     <h2>Browse Our Massive List Of Box Office Classics!</h2>
-    {movieCats}
-        <Link to="/update">Update Categories</Link>
+      <h2 className="homeheader ">Browse Our Massive List Of Box Office Classics!</h2>
+      {movieCats}
+      <Link to="/update">Update Categories</Link>
     </div>;
   }
 }
