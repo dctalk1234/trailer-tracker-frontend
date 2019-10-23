@@ -44,7 +44,9 @@ export default class UpdateCategory extends Component {
 
     }
     render() {
-        console.log(this.state.search);
+
+
+
         return (
             <div>
                 <h2 className="homeheader ">Change later</h2>
