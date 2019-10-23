@@ -18,7 +18,7 @@ export default class UpdateCategory extends Component {
     handleSubmit(evt) {
         let updatedTitle = this.state.updatedTitle;
         axios.put(
-            `http://localhost:8080/Category/${this.props.match.params.title}`,
+            `http://localhost:8080/Category/update/${this.props.match.params.title}`,
             { title: updatedTitle },
             { headers: { 'Content-Type': 'application/json' } }
         )
