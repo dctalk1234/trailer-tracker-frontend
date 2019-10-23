@@ -16,9 +16,11 @@ export default class UpdateCategory extends Component {
         this.findMovie = this.findMovie.bind(this);
     }
     handleSubmit(evt) {
+        evt.preventDefault();
+
         let updatedTitle = this.state.updatedTitle;
         axios.put(
-            `http://localhost:8080/Category/update/${this.props.match.params.title}`,
+            `http://localhost:8080/Category/${this.props.match.params.title}`,
             { title: updatedTitle },
             { headers: { 'Content-Type': 'application/json' } }
         )
