@@ -61,18 +61,23 @@ export default class UpdateCategory extends Component {
     }
     addMovie(evt) {
         evt.preventDefault();
-        console.log(evt.target);
-        let movieObject = this.state.movieList;
-            // .map((movieTitle) => {movieTitle.title});
-        // if (evt.target === movieObject.title) {
-        //     this.state.movies.push(evt.target);
-        //     console.log(this.state.movies);
-        // }
+        console.log(evt.target.innerText);
+        evt.target.style.color = '#F25A38';
+        let movieSelected = evt.target.innerText;
+        let movieObject = this.state.movieList.find((movie) => {
+            return movie.title === movieSelected;
+        });
+            //this.state.movies.push(movieObject);
+            //this.setState( prevState => ({movies: prevState.movies.push(movieObject)} ));
+        this.setState({
+            movies: [...this.state.movies, movieObject]
+        });
         console.log(movieObject);
+        // return(background: "green");
     }
     render() {
 
-//console.log(this.state.movies);
+console.log(this.state.movies);
         let movieTitles = this.state.movies.map(item => {
             return (
                 <div key={item.title}>
@@ -103,7 +108,7 @@ export default class UpdateCategory extends Component {
 
                             { this.state.movieList.map((movieTitle) => {
 
-                                return <li onClick={this.addMovie} className="catmovie" key={movieTitle.title}>{movieTitle.title}</li>;
+                                return <li  onClick={this.addMovie} className="catmovie" key={movieTitle.title}>{movieTitle.title}</li>;
                             })}
 
                         </ul>
