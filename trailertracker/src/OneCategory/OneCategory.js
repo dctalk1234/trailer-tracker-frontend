@@ -39,6 +39,7 @@ export default class OneCategory extends Component {
 
     return (
       <div>
+        <h3 className="homeheader">The Chosen Category is {this.props.match.params.title}</h3>
         {list}
         <Link to="/"><button className="backtoHome">Back To Home</button></Link>
 
