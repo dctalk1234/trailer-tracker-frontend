@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import catList from "./categoryData.json";
+// import { Link } from "react-router-dom";
+// import catList from "./categoryData.json";
 import axios from "axios";
 import "../App/App.css";
 
@@ -39,7 +39,6 @@ class CategoryList extends Component {
     return <div>
       <h2 className="homeheader">Browse Our Massive List Of Box Office Classics!</h2>
       {movieCats}
-      <Link to="/update">Update Categories</Link>
     </div>;
   }
 }
