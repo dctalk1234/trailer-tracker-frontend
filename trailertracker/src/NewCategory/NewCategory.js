@@ -8,11 +8,14 @@ export default class NewCategory extends Component {
             title: ''
         };
         this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
     handleSubmit(evt) {
+        evt.preventDefault();
+        let newTitle = this.state.title;
         axios.post(
-            'https://localhost:8080/category',
-            { title: evt.target.value },
+            'http://localhost:8080/category',
+            { title: newTitle },
             { headers: { 'Content-Type': 'application/json'} }
         )
             .then(res => {
@@ -21,6 +24,7 @@ export default class NewCategory extends Component {
 
     }
     handleChange(evt) {
+        evt.preventDefault();
         this.setState({ title: evt.target.value });
         console.log(this.state.title);
     }
@@ -30,7 +34,7 @@ export default class NewCategory extends Component {
             <div>
                 <form>
                     <label>Category <input onChange={this.handleChange} type="text" placeholder="type category name" value={this.state.title}/> </label>
-                    <button onSubmit={this.handleSubmit} type="submit">Submit</button>
+                    <button onClick={this.handleSubmit} type="submit">Submit</button>
                 </form>
 
             </div>
