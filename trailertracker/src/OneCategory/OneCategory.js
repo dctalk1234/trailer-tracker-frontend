@@ -12,13 +12,13 @@ export default class OneCategory extends Component {
     }
   }
   componentDidMount() {
-    axios.get(`http://localhost:8080/Category/${"Action"}`)
+    // axios.get(`http://localhost:8080/Category/${"Action"}`)
+    axios.get(`http://localhost:8080/Category/${this.props.match.params.title}`)
       .then(res => {
-        console.log(res.data);
-        let movieCats = this.state.listOfCategories.map(item => {
-          console.log(item)
-          this.setState({ movies: res.data.title });
-        })
+        // console.log(res.data);
+
+        this.setState({ movies: res.data });
+
       })
       .catch(error => {
         console.log(error);
@@ -27,8 +27,42 @@ export default class OneCategory extends Component {
   }
 
   render() {
+
+    // console.log(this.state.movies.movies)
+    // let movietitle = this.state.movies;
+    // console.log(this.state.movies)
+
+    let movieArray = this.state.movies.movies || '';
+
+
+    // console.log(movieArray)
+    if (movieArray) {
+      // console.log(movieArray.length)
+      let moviePosters = [];
+      for (let i = 0; i < movieArray.length; i++) {
+        moviePosters.push(movieArray[i].poster);
+
+      }
+
+      console.log(moviePosters);
+
+
+      let listOfPosters = moviePosters.map(poster => {
+
+        console.log(poster);
+        return (
+          <a href={`/movie`}>
+            {/* Change this */}
+            <img className="poster" key={poster} src={poster} alt="poster" />
+          </a>
+        );
+      });
+
+    }
+
+
     return (
-      <h1>hi from oneCat</h1>
+      <div>{this.listOfPosters}</div>
 
     )
     // let chosenCategory = catList.find(
