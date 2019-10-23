@@ -8,25 +8,28 @@ import "../App/App.css";
 class CategoryList extends Component {
   constructor() {
     super();
+    this.state = {
+      listOfCategories: []
+    }
   }
+
   componentDidMount() {
 
-    axios.get(
-      'https://localhost:8080/category',
-      { title: '' },
-      { headers: { 'Content-Type': 'application/json' } }
-    )
+    axios.get('http://localhost:8080/Category/')
       .then(res => {
-        console.log(res);
+        console.log(res.data);
+        this.setState({ listOfCategories: res.data });
       })
       .catch(error => {
         console.log(error);
       })
-  }
+  } ß
+
   render() {
-    let movieCats = catList.map(item => {
+    console.log('hello');
+    let movieCats = this.state.listOfCategories.map(item => {
       return (
-        <div key={item.genre}>
+        <div key={item.title}>
           <ul>
             <a href={`/category/${item.title}`}>{item.title}</a>
           </ul>
@@ -34,13 +37,9 @@ class CategoryList extends Component {
       );
     });
     return <div>
-      <h2 className="homeheader ">Browse Our Massive List Of Box Office Classics!</h2>
-
+      <h2 className="homeheader">Browse Our Massive List Of Box Office Classics!</h2>
       {movieCats}
       <Link to="/update">Update Categories</Link>
-
-
-
     </div>;
   }
 }

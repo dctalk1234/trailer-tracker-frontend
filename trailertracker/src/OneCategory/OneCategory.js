@@ -55,7 +55,10 @@ export default class OneCategory extends Component {
           {poster}
           <br></br>
         </div>
-        <Link to="/"><button className="backtohome-btn">Back To Home</button></Link>
+        <Link to="/"><button className="backtoHome">Back To Home</button></Link>
+
+        <a href={`/category/update/${chosenCategory.title}`}><button className="updatecat">
+          Update this Category  </button></a>
       </form>
     );
   }
