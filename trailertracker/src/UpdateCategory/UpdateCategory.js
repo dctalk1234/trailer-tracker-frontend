@@ -6,6 +6,7 @@ export default class UpdateCategory extends Component {
     constructor() {
         super();
         this.state = {
+            movies: [],
             updatedTitle: '',
             search: '',
             movieList: movieList,
@@ -14,6 +15,18 @@ export default class UpdateCategory extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.findMovie = this.findMovie.bind(this);
+    }
+    componentDidMount() {
+        axios.get(`http://localhost:8080/Category/${this.props.match.params.title}`)
+            .then(res => {
+               // console.log(...res.data.movies);
+                this.setState({
+                    movies: [...res.data.movies]
+                });
+            })
+            .catch(error => {
+                console.log(error);
+            })
     }
     handleSubmit(evt) {
         evt.preventDefault();
@@ -45,22 +58,36 @@ export default class UpdateCategory extends Component {
     }
     render() {
 
-
-
+//console.log(this.state.movies);
+        let movieTitles = this.state.movies.map(item => {
+            return (
+                <div key={item.title}>
+                    <ul>
+                        {item.title}
+                    </ul>
+                </div>
+            );
+        });
+console.log(movieTitles);
         return (
             <div>
-                <h2 className="homeheader ">Change later</h2>
-                <form>
-                    <label>Category <input onChange={this.handleChange} type="text" placeholder="type category name" value={this.state.updatedTitle} /> </label>
+                <h2 className="homeheader ">{this.props.match.params.title}</h2>
+                <h3>Current Movie Titles in {this.props.match.params.title}</h3>
+                {movieTitles}
+
+                <form >
+                    <label>Category <input onChange={this.handleChange} type="text" placeholder={this.props.match.params.title} value={this.state.updatedTitle} /> </label>
                     <button onClick={this.handleSubmit} type="submit">Submit</button>
                 </form>
+
+
                 <form>
                     <label>Movies <input onChange={this.findMovie} type="text" placeholder="type movie title" value={this.state.search} /> </label>
 
                     <div>
                         <ul >
 
-                            {this.state.movieList.map((movieTitle) => {
+                            { this.state.movieList.map((movieTitle) => {
 
                                 return <li className="catmovie" key={movieTitle.title}>{movieTitle.title}</li>;
                             })}
