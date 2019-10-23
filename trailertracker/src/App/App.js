@@ -54,6 +54,8 @@ class App extends Component {
                         <Route path="/update" exact={true} component={UpdateCategory} />
                     </Switch>
                 </main>
+
+
             </div>
         );
     }

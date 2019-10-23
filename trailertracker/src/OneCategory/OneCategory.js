@@ -28,8 +28,9 @@ export default class OneCategory extends Component {
     let poster = moviePosters.map(poster => {
       console.log(poster);
       return (
-        <a href="#">
-          <img key={poster} src={poster} alt="poster" />
+        <a href="/">
+          {/* Change this */}
+          <img className="poster" key={poster} src={poster} alt="poster" />
         </a>
       );
     });
