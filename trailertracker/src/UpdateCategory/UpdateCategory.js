@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import movieList from '../Movie/movieData';
 
 export default class UpdateCategory extends Component {
     constructor() {
@@ -9,8 +8,8 @@ export default class UpdateCategory extends Component {
             movies: [],
             updatedTitle: '',
             search: '',
-            movieList: movieList,
-            originalMovieList: movieList
+            movieList: [],
+            originalMovieList: []
         };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -27,6 +26,14 @@ export default class UpdateCategory extends Component {
             })
             .catch(error => {
                 console.log(error);
+            })
+            .then(() => {
+                axios.get(`http://localhost:8080/Movie`)
+                    .then(res => {
+                        this.setState({
+                            originalMovieList: [...res.data]
+                        })
+                    })
             })
     }
     handleSubmit(evt) {
