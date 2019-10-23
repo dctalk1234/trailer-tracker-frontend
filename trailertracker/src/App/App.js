@@ -47,7 +47,7 @@ class App extends Component {
                         <Route path="/about" exact={true} component={About}/>
                         <Route path="/movie/:title" exact={true} render={routerProps => <Movie film={this.showCategory} match={routerProps.match}/>}/>
                         <Route path="/category/:title" exact={true} render={routerProps => <OneCategory match={routerProps.match}/>}/>
-                        <Route path="/update" exact={true} component={UpdateCategory}/>
+                        <Route path="/category/update/:title" exact={true} render={routerProps => <UpdateCategory match={routerProps.match}/>}/>
                     </Switch>
                 </main>
             </div>

@@ -55,6 +55,7 @@ export default class OneCategory extends Component {
           <br></br>
         </div>
         <Link to="/">Back To Home</Link>
+        <a href={`/category/update/${chosenCategory.title}`}>Update this Category</a>
       </form>
     );
   }
