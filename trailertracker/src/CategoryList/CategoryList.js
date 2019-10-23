@@ -23,7 +23,7 @@ class CategoryList extends Component {
       .catch(error => {
         console.log(error);
       })
-  } ß
+  }
 
   render() {
     console.log('hello');
