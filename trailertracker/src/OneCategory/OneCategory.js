@@ -15,9 +15,9 @@ export default class OneCategory extends Component {
     // axios.get(`http://localhost:8080/Category/${"Action"}`)
     axios.get(`http://localhost:8080/Category/${this.props.match.params.title}`)
       .then(res => {
-        // console.log(res.data);
+        console.log(res.data.movies);
 
-        this.setState({ movies: res.data });
+        this.setState({ movies: res.data.movies });
 
       })
       .catch(error => {
@@ -36,7 +36,10 @@ export default class OneCategory extends Component {
     })
 
     return (
-      <div>{list}</div>
+      <div>
+        {list}
+      <h2>hello</h2>
+     </div>
 
     )
   }
