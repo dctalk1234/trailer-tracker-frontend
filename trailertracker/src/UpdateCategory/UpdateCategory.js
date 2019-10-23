@@ -15,6 +15,7 @@ export default class UpdateCategory extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.findMovie = this.findMovie.bind(this);
+        this.addMovie = this.addMovie.bind(this);
     }
     componentDidMount() {
         axios.get(`http://localhost:8080/Category/${this.props.match.params.title}`)
@@ -34,7 +35,9 @@ export default class UpdateCategory extends Component {
         let updatedTitle = this.state.updatedTitle;
         axios.put(
             `http://localhost:8080/Category/${this.props.match.params.title}`,
-            { title: updatedTitle },
+            { title: updatedTitle,
+                movies: this.state.movies
+            },
             { headers: { 'Content-Type': 'application/json' } }
         )
             .then(res => {
@@ -56,6 +59,17 @@ export default class UpdateCategory extends Component {
         console.log(filteredMovie);
 
     }
+    addMovie(evt) {
+        evt.preventDefault();
+        console.log(evt.target);
+        let movieObject = this.state.movieList;
+            // .map((movieTitle) => {movieTitle.title});
+        // if (evt.target === movieObject.title) {
+        //     this.state.movies.push(evt.target);
+        //     console.log(this.state.movies);
+        // }
+        console.log(movieObject);
+    }
     render() {
 
 //console.log(this.state.movies);
@@ -68,7 +82,7 @@ export default class UpdateCategory extends Component {
                 </div>
             );
         });
-console.log(movieTitles);
+//console.log(movieTitles);
         return (
             <div>
                 <h2 className="homeheader ">{this.props.match.params.title}</h2>
@@ -89,7 +103,7 @@ console.log(movieTitles);
 
                             { this.state.movieList.map((movieTitle) => {
 
-                                return <li className="catmovie" key={movieTitle.title}>{movieTitle.title}</li>;
+                                return <li onClick={this.addMovie} className="catmovie" key={movieTitle.title}>{movieTitle.title}</li>;
                             })}
 
                         </ul>
