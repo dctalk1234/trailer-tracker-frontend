@@ -32,6 +32,7 @@ export default class OneCategory extends Component {
 					<a href={`/movie/${movie.title}`}>
 						<img src={movie.poster}></img>
 					</a>
+
 				</div>
 			);
 		});
@@ -39,6 +40,13 @@ export default class OneCategory extends Component {
 		return (
 			<div>
 				{list}
+              <Link to="/"><button className="backtoHome">Back To Home</button></Link>
+
+
+
+
+              <Link to={`/Category/update/${this.props.match.params.title}`}><button className="updatecat">
+                Update this Category  </button></Link>
 			</div>
 		);
 	}
