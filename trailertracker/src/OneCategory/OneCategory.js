@@ -3,6 +3,7 @@ import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
 
 export default class OneCategory extends Component {
+
 	constructor() {
 		super();
 		this.state = {
