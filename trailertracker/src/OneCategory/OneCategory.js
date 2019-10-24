@@ -15,7 +15,6 @@ export default class OneCategory extends Component {
 	}
 
 	deleteCategory() {
-		axios;
 		axios
 			.delete(`https://trailerstracker.herokuapp.com/Category/${this.props.match.params.title}`)
 			.then(res => {
