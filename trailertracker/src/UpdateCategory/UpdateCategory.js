@@ -17,9 +17,10 @@ export default class UpdateCategory extends Component {
         this.addMovie = this.addMovie.bind(this);
     }
     componentDidMount() {
-        axios.get(`http://localhost:8080/Category/${this.props.match.params.title}`)
+        axios.get(`https://trailerstracker.herokuapp.com/Category/${this.props.match.params.title}`)
+            // axios.get('https://trailerstracker.herokuapp.com/Category')
             .then(res => {
-               // console.log(...res.data.movies);
+                // console.log(...res.data.movies);
                 this.setState({
                     movies: [...res.data.movies]
                 });
@@ -28,7 +29,9 @@ export default class UpdateCategory extends Component {
                 console.log(error);
             })
             .then(() => {
-                axios.get(`http://localhost:8080/Movie`)
+                axios.get(`https://trailerstracker.herokuapp.com/Movie`)
+
+                    // axios.get(`http://localhost:8080/Movie`)
                     .then(res => {
                         this.setState({
                             originalMovieList: [...res.data]
@@ -41,8 +44,11 @@ export default class UpdateCategory extends Component {
 
         let updatedTitle = this.state.updatedTitle;
         axios.put(
-            `http://localhost:8080/Category/${this.props.match.params.title}`,
-            { title: updatedTitle,
+            `https://trailerstracker.herokuapp.com/Category//${this.props.match.params.title}`,
+
+            // `http://localhost:8080/Category/${this.props.match.params.title}`,
+            {
+                title: updatedTitle,
                 movies: this.state.movies
             },
             { headers: { 'Content-Type': 'application/json' } }
@@ -74,8 +80,8 @@ export default class UpdateCategory extends Component {
         let movieObject = this.state.movieList.find((movie) => {
             return movie.title === movieSelected;
         });
-            //this.state.movies.push(movieObject);
-            //this.setState( prevState => ({movies: prevState.movies.push(movieObject)} ));
+        //this.state.movies.push(movieObject);
+        //this.setState( prevState => ({movies: prevState.movies.push(movieObject)} ));
         this.setState({
             movies: [...this.state.movies, movieObject]
         });
@@ -84,7 +90,7 @@ export default class UpdateCategory extends Component {
     }
     render() {
 
-console.log(this.state.movies);
+        console.log(this.state.movies);
         let movieTitles = this.state.movies.map(item => {
             return (
                 <div key={item.title}>
@@ -94,7 +100,7 @@ console.log(this.state.movies);
                 </div>
             );
         });
-//console.log(movieTitles);
+        //console.log(movieTitles);
         return (
             <div>
                 <h2 className="homeheader ">{this.props.match.params.title}</h2>
@@ -113,9 +119,9 @@ console.log(this.state.movies);
                     <div>
                         <ul >
 
-                            { this.state.movieList.map((movieTitle) => {
+                            {this.state.movieList.map((movieTitle) => {
 
-                                return <li  onClick={this.addMovie} className="catmovie" key={movieTitle.title}>{movieTitle.title}</li>;
+                                return <li onClick={this.addMovie} className="catmovie" key={movieTitle.title}>{movieTitle.title}</li>;
                             })}
 
                         </ul>

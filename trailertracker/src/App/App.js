@@ -32,7 +32,7 @@ class App extends Component {
             <div className="App container">
                 <header>
                     <ul className="nav">
-                        <Link to="/">
+                        <Link to="/trailer-tracker-frontend">
                             <li className="nav-item">Home</li>
                         </Link>
                         <Link to="/about">
