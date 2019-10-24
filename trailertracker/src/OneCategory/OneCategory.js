@@ -1,39 +1,43 @@
 import React, { Component } from "react";
-import { Link, Route } from "react-router-dom";
-// import catList from "../CategoryList/categoryData.json";
-import UpdateCategory from "../UpdateCategory/UpdateCategory";
+import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
 
 export default class OneCategory extends Component {
   constructor() {
     super();
     this.state = {
-      movies: []
+      movies: [],
+      redirect: false
     };
     this.deleteCategory = this.deleteCategory.bind(this);
+    this.setRedirect = this.setRedirect.bind(this);
+    this.renderRedirect = this.renderRedirect.bind(this);
   }
-
   deleteCategory() {
     axios
       .delete(`https://trailerstracker.herokuapp.com/Category/${this.props.match.params.title}`)
-      // .delete(`http://localhost:8080/Category/${this.props.match.params.title}`)
       .then(res => {
-        console.log(res.data.movies);
-
-        this.setState({ movies: res.data.movies });
+        this.setRedirect();
+        // this.setState({ movies: res.data.movies });
       })
-
       .catch(error => {
         console.log(error);
       });
   }
 
+  setRedirect() {
+    this.setState({ redirect: true });
+  }
+
+  renderRedirect() {
+    if (this.state.redirect) {
+      return <Redirect to="/trailer-tracker-frontend" />;
+    }
+  }
+
   componentDidMount() {
-    // axios.get(`http://localhost:8080/Category/${"Action"}`)
     axios
       .get(`https://trailerstracker.herokuapp.com/Category/${this.props.match.params.title}`)
-
-      // .get(`http://localhost:8080/Category/${this.props.match.params.title}`)
       .then(res => {
         console.log(res.data.movies);
 
@@ -54,18 +58,19 @@ export default class OneCategory extends Component {
         </div>
       );
     });
+    console.log(this.state.redirect);
 
     return (
       <div>
+        {this.renderRedirect()}
         <h3 className="homeheader">The Chosen Category is {this.props.match.params.title}</h3>
         {list}
-        <Link to="/">
-          <button onClick={this.deleteCategory} className="deleteCategory">
-            Delete This Category
-          </button>
-        </Link>
 
-        <Link to="/">
+        <button onClick={this.deleteCategory} className="deleteCategory">
+          Delete This Category
+				</button>
+
+        <Link to="/trailer-tracker-frontend">
           <button className="backtoHome">Back To Home</button>
         </Link>
 
