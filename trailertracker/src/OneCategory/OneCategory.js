@@ -1,94 +1,84 @@
 import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
-// import catList from "../CategoryList/categoryData.json";
-import UpdateCategory from "../UpdateCategory/UpdateCategory";
 import axios from "axios";
 
 export default class OneCategory extends Component {
-  constructor() {
-    super();
-    this.state = {
-      movies: [],
-      Redirect: false
-    };
-    this.deleteCategory=this.deleteCategory.bind(this);
-    // this.setRedirect=this.setRedirect.bind(this);
-  }
+	constructor() {
+		super();
+		this.state = {
+			movies: [],
+			redirect: false
+		};
+		this.deleteCategory = this.deleteCategory.bind(this);
+		this.setRedirect = this.setRedirect.bind(this);
+		this.renderRedirect = this.renderRedirect.bind(this);
+	}
 
-  deleteCategory() {
-    axios
-      .delete(`http://localhost:8080/Category/${this.props.match.params.title}`)
-      .then(res => {
-        console.log(res.data.movies);
+	deleteCategory() {
+		axios
+			.delete(`http://localhost:8080/Category/${this.props.match.params.title}`)
+			.then(res => {
+				this.setRedirect();
+				// this.setState({ movies: res.data.movies });
+			})
+			.catch(error => {
+				console.log(error);
+			});
+	}
 
-        this.setState({ movies: res.data.movies });
-      
-      }).then(() => {
-        // this.setRedirect()
-        window.location="/";
-      
-      })
+	setRedirect() {
+		this.setState({ redirect: true })
+	}
 
-      .catch(error => {
-        console.log(error);
-      });
-  }
+	renderRedirect() {
+		if (this.state.redirect) {
+			return <Redirect to="/" />;
+		}
+	}
 
-  // setRedirect() { 
-  //   this.setState({Redirect: true})
-  // }
+	componentDidMount() {
+		axios
+			.get(`http://localhost:8080/Category/${this.props.match.params.title}`)
+			.then(res => {
+				console.log(res.data.movies);
 
-  // renderRedirect() {
-  //   if (this.state.Redirect) {
-  //     return <Redirect to="/" />
-  //   }
-  // }
+				this.setState({ movies: res.data.movies });
+			})
+			.catch(error => {
+				console.log(error);
+			});
+	}
 
-  componentDidMount() {
-    // axios.get(`http://localhost:8080/Category/${"Action"}`)
-    axios
-      .get(`http://localhost:8080/Category/${this.props.match.params.title}`)
-      .then(res => {
-        console.log(res.data.movies);
+	render() {
+		let list = this.state.movies.map(movie => {
+			return (
+				<div>
+					<a href={`/movie/${movie.title}`}>
+						<img className="poster" src={movie.poster}></img>
+					</a>
+				</div>
+			);
+		});
+		console.log(this.state.redirect);
 
-        this.setState({ movies: res.data.movies });
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }
+		return (
+			<div>
+				{this.renderRedirect()}
+				<h3 className="homeheader">The Chosen Category is {this.props.match.params.title}</h3>
+				{list}
 
-  render() {
-    let list = this.state.movies.map(movie => {
-      return (
-        <div>
-          <a href={`/movie/${movie.title}`}>
-            <img className="poster" src={movie.poster}></img>
-          </a>
-        </div>
-      );
-    });
+				<button onClick={this.deleteCategory} className="deleteCategory">
+					Delete This Category
+				</button>
 
-    return (
-      <div>
-        {/* {this.renderRedirect} */}
-        <h3 className="homeheader">The Chosen Category is {this.props.match.params.title}</h3>
-        {list}
-        
-          <Link to="/">
-          <button onClick={this.deleteCategory} className="deleteCategory">
-            Delete This Category
-          </button>
-          </Link>
+				<Link to="/">
+					<button className="backtoHome">Back To Home</button>
+				</Link>
 
-        <Link to="/">
-          <button className="backtoHome">Back To Home</button>
-        </Link>
-
-        <Link to={`/Category/update/${this.props.match.params.title}`}>
-          <button className="updatecat">Update this Category </button>
-        </Link>
-      </div>
-    );
-  }
+				<Link to={`/Category/update/${this.props.match.params.title}`}>
+					<button className="updatecat">Update this Category </button>
+				</Link>
+			</div>
+		);
+	}
 }
