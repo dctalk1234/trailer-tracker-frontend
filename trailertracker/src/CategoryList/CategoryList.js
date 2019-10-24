@@ -15,7 +15,7 @@ class CategoryList extends Component {
 
 	componentDidMount() {
 		axios
-			.get("http://localhost:8080/Category/")
+			.get("https://trailerstracker.herokuapp.com/Category")
 			.then(res => {
 				console.log(res.data);
 				this.setState({ listOfCategories: res.data });
