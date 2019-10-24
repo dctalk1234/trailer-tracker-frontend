@@ -3,7 +3,6 @@ import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
 
 export default class OneCategory extends Component {
-
 	constructor() {
 		super();
 		this.state = {
@@ -16,8 +15,9 @@ export default class OneCategory extends Component {
 	}
 
 	deleteCategory() {
+		axios;
 		axios
-			.delete(`http://localhost:8080/Category/${this.props.match.params.title}`)
+			.delete(`https://trailerstracker.herokuapp.com/Category/${this.props.match.params.title}`)
 			.then(res => {
 				this.setRedirect();
 				// this.setState({ movies: res.data.movies });
@@ -28,7 +28,7 @@ export default class OneCategory extends Component {
 	}
 
 	setRedirect() {
-		this.setState({ redirect: true })
+		this.setState({ redirect: true });
 	}
 
 	renderRedirect() {
