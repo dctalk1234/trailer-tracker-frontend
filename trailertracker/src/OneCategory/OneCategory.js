@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link, Route } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 // import catList from "../CategoryList/categoryData.json";
 import UpdateCategory from "../UpdateCategory/UpdateCategory";
 import axios from "axios";
@@ -8,9 +8,12 @@ export default class OneCategory extends Component {
   constructor() {
     super();
     this.state = {
-      movies: []
+      movies: [],
+      Redirect: false
     };
+
     this.deleteCategory = this.deleteCategory.bind(this);
+
   }
 
   deleteCategory() {
@@ -20,12 +23,27 @@ export default class OneCategory extends Component {
         console.log(res.data.movies);
 
         this.setState({ movies: res.data.movies });
+      
+      }).then(() => {
+        // this.setRedirect()
+        window.location="/";
+      
       })
 
       .catch(error => {
         console.log(error);
       });
   }
+
+  // setRedirect() { 
+  //   this.setState({Redirect: true})
+  // }
+
+  // renderRedirect() {
+  //   if (this.state.Redirect) {
+  //     return <Redirect to="/" />
+  //   }
+  // }
 
   componentDidMount() {
     // axios.get(`http://localhost:8080/Category/${"Action"}`)
@@ -54,13 +72,15 @@ export default class OneCategory extends Component {
 
     return (
       <div>
+        {/* {this.renderRedirect} */}
         <h3 className="homeheader">The Chosen Category is {this.props.match.params.title}</h3>
         {list}
-        <Link to="/">
+        
+          <Link to="/">
           <button onClick={this.deleteCategory} className="deleteCategory">
             Delete This Category
           </button>
-        </Link>
+          </Link>
 
         <Link to="/">
           <button className="backtoHome">Back To Home</button>
