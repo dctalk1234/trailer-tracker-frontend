@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "74849ef121427b2d68b2a206fd85989e",
+    "revision": "fee464f4edb24d5d1a1c4761c7806141",
     "url": "/trailer-tracker-frontend/index.html"
   },
   {
-    "revision": "fcbcc4865fa3bd7db417",
+    "revision": "ea00719cb581d68337bf",
     "url": "/trailer-tracker-frontend/static/css/main.448d14d8.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/trailer-tracker-frontend/static/js/2.b9a1b819.chunk.js"
   },
   {
-    "revision": "fcbcc4865fa3bd7db417",
-    "url": "/trailer-tracker-frontend/static/js/main.105c7eb9.chunk.js"
+    "revision": "ea00719cb581d68337bf",
+    "url": "/trailer-tracker-frontend/static/js/main.17643ffc.chunk.js"
   },
   {
     "revision": "ad1167a803dab03c8217",
