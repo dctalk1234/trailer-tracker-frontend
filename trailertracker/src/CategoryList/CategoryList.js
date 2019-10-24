@@ -5,6 +5,7 @@ import axios from "axios";
 import "../App/App.css";
 
 class CategoryList extends Component {
+
 	constructor() {
 		super();
 		this.state = {
@@ -42,6 +43,7 @@ class CategoryList extends Component {
 			</div>
 		);
 	}
+
 }
 
 export default CategoryList;
