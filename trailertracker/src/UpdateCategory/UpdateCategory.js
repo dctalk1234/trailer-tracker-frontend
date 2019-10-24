@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import './UpdateCategory.css';
 
 export default class UpdateCategory extends Component {
     constructor() {
@@ -129,18 +130,20 @@ export default class UpdateCategory extends Component {
 //console.log(movieTitles);
         return (
             <div>
+                <section className="currentMovies">
                 <h2 className="homeheader ">{this.props.match.params.title}</h2>
                 <h3>Current Movie Titles in {this.props.match.params.title}</h3>
                 {movieTitles}
 
-                <form >
-                    <label>Category <input onChange={this.handleChange} type="text" placeholder={this.props.match.params.title} value={this.state.updatedTitle} /> </label>
+                <form className="currentMovies">
+                    <label>Change Category Name <input onChange={this.handleChange} type="text" placeholder={this.props.match.params.title} value={this.state.updatedTitle} /> </label>
                     <button onClick={this.handleSubmit} type="submit">Submit</button>
                 </form>
 
-
-                <form>
-                    <label>Movies <input onChange={this.findMovie} type="text" placeholder="type movie title" value={this.state.search} /> </label>
+                </section>
+                <form className="movieDBSearch">
+                    <h4>Search through the movie selections and then click on the title you want to add.</h4>
+                    <label>Movie Selections <input onChange={this.findMovie} type="text" placeholder="type movie title" value={this.state.search} /> </label>
 
                     <div>
                         <ul >
@@ -153,9 +156,10 @@ export default class UpdateCategory extends Component {
                         </ul>
                     </div>
                 </form>
-                <form>
-                    <h4>Didn't find the movie you were looking for? Type into the field below to search a larger database.</h4>
-                    <label> More Movies <input onChange={this.searchTitle} type="text" placeholder="type movie title" /></label>
+                <form className="OMBDSearch">
+                    <h4>Didn't find the movie you were looking for? </h4>
+                    <h4>Type the complete title into the field below to search a larger database.</h4>
+                    <label> Search Movies <input onChange={this.searchTitle} type="text" placeholder="type movie title" /></label>
                     <button onClick={this.searchResults} type="submit">Submit</button>
                     <div>
                         <ul >
