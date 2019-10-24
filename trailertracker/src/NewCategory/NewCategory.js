@@ -14,7 +14,7 @@ export default class NewCategory extends Component {
         evt.preventDefault();
         let newTitle = this.state.title;
         axios.post(
-            'http://localhost:8080/category',
+            `https://trailerstracker.herokuapp.com/Category/`,
             { title: newTitle },
             { headers: { 'Content-Type': 'application/json' } }
         )

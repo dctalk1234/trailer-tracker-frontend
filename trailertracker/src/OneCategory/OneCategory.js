@@ -11,8 +11,9 @@ export default class OneCategory extends Component {
       movies: [],
       Redirect: false
     };
-    this.deleteCategory=this.deleteCategory.bind(this);
-    // this.setRedirect=this.setRedirect.bind(this);
+
+    this.deleteCategory = this.deleteCategory.bind(this);
+
   }
 
   deleteCategory() {
