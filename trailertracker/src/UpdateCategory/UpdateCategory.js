@@ -86,12 +86,12 @@ export default class UpdateCategory extends Component {
     searchResults(evt) {
         evt.preventDefault();
         let foundMovie = this.state.foundTitle;
-        axios.get(`http://www.omdbapi.com/?apikey=ef42ea14&s=${foundMovie}`,
+        axios.get(`https://trailerstracker.herokuapp.com/Movie/search/${foundMovie}`,
             { title: foundMovie},
             { headers: { 'Content-Type': 'application/json' } })
             .then(res => {
-                this.setState({searchedMovieList: res.data.Search} );
-                console.log(res.data.Search);
+                this.setState({searchedMovieList: res.data} );
+                console.log(res.data);
             });
     }
     searchTitle(evt) {
@@ -104,14 +104,15 @@ export default class UpdateCategory extends Component {
         evt.preventDefault(evt);
         console.log(evt.target.innerText);
         evt.target.style.color = 'green';
-        let movieSelected = evt.target.innerText;
-        let movieObject = this.state.searchedMovieList.find((movie) => {
-            return movie.title === movieSelected;
-        });
-        this.setState({
-            movies: [...this.state.movies, movieObject]
-        });
-        console.log(movieObject);
+        let newMovieTitle = this.state.searchedMovieList.Title;
+        let newMovieObject = this.state.searchedMovieList;
+        axios.post(`https://trailerstracker.herokuapp.com/Movie/new`,
+            { title: newMovieTitle},
+            { headers: { 'Content-Type': 'application/json' } })
+            .then(res => {
+                this.setState({searchedMovieList: newMovieObject} );
+                console.log(newMovieObject);
+            });
     }
     render() {
 
@@ -158,12 +159,7 @@ export default class UpdateCategory extends Component {
                     <button onClick={this.searchResults} type="submit">Submit</button>
                     <div>
                         <ul >
-
-                            { this.state.searchedMovieList.map((movieTitle) => {
-
-                                return <li  onClick={this.addSearchedMovie} className="catmovie" key={movieTitle.Title}>{movieTitle.Title} {movieTitle.Year}</li>;
-                            })}
-
+                                 <li  onClick={this.addSearchedMovie} className="catmovie" >{this.state.searchedMovieList.Title} {this.state.searchedMovieList.Year}</li>
                         </ul>
                     </div>
                 </form>
