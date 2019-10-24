@@ -45,7 +45,7 @@ class App extends Component {
                     </ul>
                 </header>
                 <main>
-                    <Switch><Route path="/" exact={true} component={CategoryList} />
+                    <Switch><Route path="/trailer-tracker-frontend" exact={true} component={CategoryList} />
                         <Route path="/new" exact={true} component={NewCategory} />
                         <Route path="/about" exact={true} component={About} />
                         <Route path="/movie/:title" exact={true} render={routerProps => <Movie film={this.showCategory} match={routerProps.match} />} />
