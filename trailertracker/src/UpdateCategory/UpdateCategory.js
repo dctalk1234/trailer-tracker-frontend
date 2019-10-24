@@ -9,34 +9,35 @@ export default class UpdateCategory extends Component {
             updatedTitle: '',
             search: '',
             movieList: [],
-            originalMovieList: []
+            originalMovieList: [],
+            searchedMovieList: []
         };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.findMovie = this.findMovie.bind(this);
         this.addMovie = this.addMovie.bind(this);
+        this.searchResults = this.searchResults.bind(this);
+        this.searchTitle = this.searchTitle.bind(this);
+        this.addSearchedMovie = this.addSearchedMovie.bind(this);
     }
     componentDidMount() {
         axios.get(`https://trailerstracker.herokuapp.com/Category/${this.props.match.params.title}`)
-            // axios.get('https://trailerstracker.herokuapp.com/Category')
             .then(res => {
                 // console.log(...res.data.movies);
                 this.setState({
                     movies: [...res.data.movies]
                 });
             })
-            .catch(error => {
-                console.log(error);
-            })
             .then(() => {
                 axios.get(`https://trailerstracker.herokuapp.com/Movie`)
-
-                    // axios.get(`http://localhost:8080/Movie`)
                     .then(res => {
                         this.setState({
                             originalMovieList: [...res.data]
                         })
                     })
+            })
+            .catch(error => {
+                console.log(error);
             })
     }
     handleSubmit(evt) {
@@ -45,10 +46,7 @@ export default class UpdateCategory extends Component {
         let updatedTitle = this.state.updatedTitle;
         axios.put(
             `https://trailerstracker.herokuapp.com/Category//${this.props.match.params.title}`,
-
-            // `http://localhost:8080/Category/${this.props.match.params.title}`,
-            {
-                title: updatedTitle,
+            { title: updatedTitle,
                 movies: this.state.movies
             },
             { headers: { 'Content-Type': 'application/json' } }
@@ -59,18 +57,18 @@ export default class UpdateCategory extends Component {
     }
     handleChange(evt) {
         evt.preventDefault();
-        this.setState({ updatedTitle: evt.target.value });
-        console.log(this.state.updatedTitle);
+        if (evt.target.value !== '') {
+            this.setState({updatedTitle: evt.target.value});
+            console.log(this.state.updatedTitle);
+        }
     }
     findMovie(evt) {
         this.setState({ search: evt.target.value });
         //console.log(evt.target.value);
-
         let filteredMovie = this.state.originalMovieList.filter(
             (movieTitle) => movieTitle.title.toLowerCase().includes(evt.target.value.toLowerCase()));
         this.setState({ movieList: filteredMovie });
         console.log(filteredMovie);
-
     }
     addMovie(evt) {
         evt.preventDefault();
@@ -80,17 +78,44 @@ export default class UpdateCategory extends Component {
         let movieObject = this.state.movieList.find((movie) => {
             return movie.title === movieSelected;
         });
-        //this.state.movies.push(movieObject);
-        //this.setState( prevState => ({movies: prevState.movies.push(movieObject)} ));
         this.setState({
             movies: [...this.state.movies, movieObject]
         });
         console.log(movieObject);
-        // return(background: "green");
+    }
+    searchResults(evt) {
+        evt.preventDefault();
+        let foundMovie = this.state.foundTitle;
+        axios.get(`http://www.omdbapi.com/?apikey=ef42ea14&s=${foundMovie}`,
+            { title: foundMovie},
+            { headers: { 'Content-Type': 'application/json' } })
+            .then(res => {
+                this.setState({searchedMovieList: res.data.Search} );
+                console.log(res.data.Search);
+            });
+    }
+    searchTitle(evt) {
+        console.log(evt.target.value);
+        evt.preventDefault();
+        this.setState({ foundTitle: evt.target.value });
+        console.log(this.state.foundTitle);
+    }
+    addSearchedMovie(evt) {
+        evt.preventDefault(evt);
+        console.log(evt.target.innerText);
+        evt.target.style.color = 'green';
+        let movieSelected = evt.target.innerText;
+        let movieObject = this.state.searchedMovieList.find((movie) => {
+            return movie.title === movieSelected;
+        });
+        this.setState({
+            movies: [...this.state.movies, movieObject]
+        });
+        console.log(movieObject);
     }
     render() {
 
-        console.log(this.state.movies);
+//console.log(this.state.movies);
         let movieTitles = this.state.movies.map(item => {
             return (
                 <div key={item.title}>
@@ -100,7 +125,7 @@ export default class UpdateCategory extends Component {
                 </div>
             );
         });
-        //console.log(movieTitles);
+//console.log(movieTitles);
         return (
             <div>
                 <h2 className="homeheader ">{this.props.match.params.title}</h2>
@@ -119,9 +144,24 @@ export default class UpdateCategory extends Component {
                     <div>
                         <ul >
 
-                            {this.state.movieList.map((movieTitle) => {
+                            { this.state.movieList.map((movieTitle) => {
 
-                                return <li onClick={this.addMovie} className="catmovie" key={movieTitle.title}>{movieTitle.title}</li>;
+                                return <li  onClick={this.addMovie} className="catmovie" key={movieTitle.title}>{movieTitle.title}</li>;
+                            })}
+
+                        </ul>
+                    </div>
+                </form>
+                <form>
+                    <h4>Didn't find the movie you were looking for? Type into the field below to search a larger database.</h4>
+                    <label> More Movies <input onChange={this.searchTitle} type="text" placeholder="type movie title" /></label>
+                    <button onClick={this.searchResults} type="submit">Submit</button>
+                    <div>
+                        <ul >
+
+                            { this.state.searchedMovieList.map((movieTitle) => {
+
+                                return <li  onClick={this.addSearchedMovie} className="catmovie" key={movieTitle.Title}>{movieTitle.Title} {movieTitle.Year}</li>;
                             })}
 
                         </ul>
