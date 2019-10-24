@@ -10,7 +10,7 @@ export default class OneCategory extends Component {
     this.state = {
       movies: []
     };
-    this.deleteCategory=this.deleteCategory.bind(this);
+    this.deleteCategory = this.deleteCategory.bind(this);
   }
 
   deleteCategory() {
