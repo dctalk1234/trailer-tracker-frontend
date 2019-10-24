@@ -38,7 +38,7 @@ export default class OneCategory extends Component {
 
 	componentDidMount() {
 		axios
-			.get(`http://localhost:8080/Category/${this.props.match.params.title}`)
+    .get(`https://trailerstracker.herokuapp.com/Category/${this.props.match.params.title}`)
 			.then(res => {
 				console.log(res.data.movies);
 
