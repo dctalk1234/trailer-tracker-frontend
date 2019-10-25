@@ -17,7 +17,7 @@ export default class UpdateCategory extends Component {
             searchedMovieList: []
         };
         this.setReload = this.setReload.bind(this);
-this.renderReload
+this.renderReload = this.renderReload.bind(this);
         this.setRedirectHome = this.setRedirect.bind(this);
         this.renderRedirectToHome = this.renderRedirect.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
