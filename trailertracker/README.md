@@ -1,9 +1,9 @@
 # trailerTracker
 
-
 ## Description
 
-The Trailer Tracker app was created let users search an extensive database of movies, and organize them into *any* kind of category that the user wants to create.
+The Trailer Tracker app was created let users search an extensive database of movies, and organize them into _any_ kind of category that the user wants to create.
+
 - Favorite Movies
 - Happy Movies
 - Action Movies
@@ -27,18 +27,17 @@ The app features the following main pages; Home, About, and New Category in navi
 
 > ## Wireframe Images
 >
-> ![](./public/Images/FrontEnd-Framework.png) 
-> ![](./public/Images/FrontEnd-Components.png)
-> ![](./public/Images/BackEnd.png)
-
+> ![](./public/Images/newFramework.png) > ![](./public/Images/FrontEnd-Components.png) > ![](./public/Images/BackEnd.png)
 
 ## Our Process
+
 The team initially decided to split into pairs and to divide the front end and back end duties evenly between the pairs.
-After intitial setup of front-end and backend team members divided evenly on both fron-end and backend tasks. 
+After intitial setup of front-end and backend team members divided evenly on both fron-end and backend tasks.
 
 Some code snippets we are particularly proud of:
 
 Our searched movies from the OMBD database returns the title and the release year, so to add ONLY the title, we created this clever piece of code.
+
 ```
 addSearchedMovie(evt) {
         evt.preventDefault(evt);
@@ -62,9 +61,11 @@ addSearchedMovie(evt) {
             })
     }
 ```
+
 We also needed a way to add movies from our local database stored in Heroku which we did with these two pieces of code:
 
 Look for the movie in our database
+
 ```
 searchResults(evt) {
         evt.preventDefault();
@@ -80,6 +81,7 @@ searchResults(evt) {
 ```
 
 Find by typing in the search field and filtering the titles down by the characters included.
+
 ```
 findMovie(evt) {
         this.setState({ search: evt.target.value });
