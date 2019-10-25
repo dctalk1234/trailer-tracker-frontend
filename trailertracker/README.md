@@ -107,6 +107,9 @@ The backend repo is hosted on GitHub at https://github.com/dctalk1234/trailer-tr
 
 The app was tested with Postman, GitHub was used for version control, and deployment was via Heroku and github pages
 
+## Current Version
+You can see the most recently updated deployed version of the front end is hosted at https://dctalk1234.github.io/trailer-tracker-frontend/
+
 ## Issues
 
 Please submit found bugs as an issue in this repository.
