@@ -118,7 +118,7 @@ export default class UpdateCategory extends Component {
     addSearchedMovie(evt) {
         evt.preventDefault(evt);
         console.log(evt.target.innerText);
-        evt.target.style.color = 'green';
+        evt.target.style.color = '#F25A38';
         let newMovieTitle = evt.target.innerText;
         newMovieTitle = newMovieTitle.split("");
         for (let i = 0; i < 5; i++) {
