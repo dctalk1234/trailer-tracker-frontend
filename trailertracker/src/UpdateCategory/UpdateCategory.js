@@ -166,7 +166,7 @@ export default class UpdateCategory extends Component {
         return (
             <div>
                 {this.renderReload()}
-                {this.renderRedirect()}
+                {this.renderRedirectToHome()}
                 <section className="currentMovies">
                 <h2 className="homeheader ">{this.props.match.params.title}</h2>
                 <h3>Current Movie Titles in {this.props.match.params.title}</h3>
