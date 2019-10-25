@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Redirect } from "react-router-dom";
 import './UpdateCategory.css';
 
 export default class UpdateCategory extends Component {
     constructor() {
         super();
         this.state = {
+            redirect: false,
             movies: [],
             updatedTitle: '',
             search: '',
@@ -13,6 +15,8 @@ export default class UpdateCategory extends Component {
             originalMovieList: [],
             searchedMovieList: []
         };
+        this.setRedirect = this.setRedirect.bind(this);
+        this.renderRedirect = this.renderRedirect.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.findMovie = this.findMovie.bind(this);
@@ -41,26 +45,36 @@ export default class UpdateCategory extends Component {
                 console.log(error);
             })
     }
+    setRedirect() {
+        this.setState({ redirect: true });
+    }
+
+    renderRedirect() {
+        if (this.state.redirect) {
+            return <Redirect to="/trailer-tracker-frontend" />;
+        }
+    }
     handleSubmit(evt) {
         evt.preventDefault();
 
-        let updatedTitle = this.state.updatedTitle;
+        let updatedTitle = this.state.updatedTitle || this.props.match.params.title;
         axios.put(
             `https://trailerstracker.herokuapp.com/Category//${this.props.match.params.title}`,
             { title: updatedTitle,
                 movies: this.state.movies
             },
-            { headers: { 'Content-Type': 'application/json' } }
-        )
+            { headers: { 'Content-Type': 'application/json' }
+            })
             .then(res => {
                 console.log(res);
+                this.setRedirect();
             })
     }
     handleChange(evt) {
         evt.preventDefault();
         if (evt.target.value !== '') {
             this.setState({updatedTitle: evt.target.value});
-            console.log(this.state.updatedTitle);
+            // console.log(this.state.updatedTitle);
         }
     }
     findMovie(evt) {
@@ -91,8 +105,8 @@ export default class UpdateCategory extends Component {
             { title: foundMovie},
             { headers: { 'Content-Type': 'application/json' } })
             .then(res => {
-                this.setState({searchedMovieList: res.data} );
-                console.log(res.data);
+                this.setState({searchedMovieList: res.data.Search} );
+                // console.log(res.data.Search);
             });
     }
     searchTitle(evt) {
@@ -105,18 +119,26 @@ export default class UpdateCategory extends Component {
         evt.preventDefault(evt);
         console.log(evt.target.innerText);
         evt.target.style.color = 'green';
-        let newMovieTitle = this.state.searchedMovieList.Title;
+        let newMovieTitle = evt.target.innerText;
+        newMovieTitle = newMovieTitle.split("");
+        for (let i = 0; i < 5; i++) {
+            newMovieTitle.pop();
+        }
+        newMovieTitle = newMovieTitle.join("");
+        console.log(newMovieTitle);
         let newMovieObject = this.state.searchedMovieList;
-        axios.post(`https://trailerstracker.herokuapp.com/Movie/new`,
-            { title: newMovieTitle},
-            { headers: { 'Content-Type': 'application/json' } })
+        console.log(newMovieObject);
+        axios.get(`https://trailerstracker.herokuapp.com/Movie/new/${newMovieTitle}`)
             .then(res => {
-                this.setState({searchedMovieList: newMovieObject} );
-                console.log(newMovieObject);
-            });
+                // this.setState({movies: [...this.state.movies] } );
+                window.location.reload();
+                // console.log(newMovieObject);
+                // console.log(res);
+            })
     }
     render() {
-
+// console.log(this.state.originalMovieList);
+// console.log(this.state.movieList);
 //console.log(this.state.movies);
         let movieTitles = this.state.movies.map(item => {
             return (
@@ -130,6 +152,7 @@ export default class UpdateCategory extends Component {
 //console.log(movieTitles);
         return (
             <div>
+                {this.renderRedirect()}
                 <section className="currentMovies">
                 <h2 className="homeheader ">{this.props.match.params.title}</h2>
                 <h3>Current Movie Titles in {this.props.match.params.title}</h3>
@@ -158,12 +181,16 @@ export default class UpdateCategory extends Component {
                 </form>
                 <form className="OMBDSearch">
                     <h4>Didn't find the movie you were looking for? </h4>
-                    <h4>Type the complete title into the field below to search a larger database.</h4>
+                    <h4>Type the complete title into the field below to search a larger database, select the movie, and it will be added to our database inside the orange box above.</h4>
                     <label> Search Movies <input onChange={this.searchTitle} type="text" placeholder="type movie title" /></label>
                     <button onClick={this.searchResults} type="submit">Submit</button>
                     <div>
                         <ul >
-                                 <li  onClick={this.addSearchedMovie} className="catmovie" >{this.state.searchedMovieList.Title} {this.state.searchedMovieList.Year}</li>
+                            { this.state.searchedMovieList.map((movieTitle) => {
+
+                                return <li  onClick={this.addSearchedMovie} className="catmovie" key={movieTitle.Title}>{movieTitle.Title} {movieTitle.Year}</li>;
+                            })}
+                                 {/*<li  onClick={this.addSearchedMovie} className="catmovie" >{this.state.searchedMovieList.Title} {this.state.searchedMovieList.Year}</li>*/}
                         </ul>
                     </div>
                 </form>
