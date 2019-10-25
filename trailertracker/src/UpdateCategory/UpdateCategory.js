@@ -8,7 +8,6 @@ export default class UpdateCategory extends Component {
         super();
         this.state = {
             redirect: false,
-            // reload: false,
             movies: [],
             updatedTitle: '',
             search: '',
@@ -16,8 +15,7 @@ export default class UpdateCategory extends Component {
             originalMovieList: [],
             searchedMovieList: []
         };
-        // this.setReload = this.setReload.bind(this);
-        // this.renderReload = this.renderReload.bind(this);
+    
         this.setRedirectToHome = this.setRedirectToHome.bind(this);
         this.renderRedirectToHome = this.renderRedirectToHome.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -57,15 +55,7 @@ export default class UpdateCategory extends Component {
             return <Redirect to="/trailer-tracker-frontend" />;
         }
     }
-    // setReload() {
-    //     this.setState({reload: true});
-    // }
-
-    // renderReload() {
-    //     if (this.state.reload) {
-    //         return <Redirect to={`/trailer-tracker-frontend/Category/update/${this.props.match.params.title}`} />;
-    //     }
-    // }
+    
 
     handleSubmit(evt) {
         evt.preventDefault();
@@ -143,9 +133,13 @@ export default class UpdateCategory extends Component {
         console.log(newMovieObject);
         axios.get(`https://trailerstracker.herokuapp.com/Movie/new/${newMovieTitle}`)
             .then(res => {
-               
-                // this.setReload();
-                // window.location.reload();
+                axios.get(`https://trailerstracker.herokuapp.com/Movie`)
+                .then(res => {
+                    this.setState({
+                        originalMovieList: [...res.data]
+                    })
+                })
+                
               
             })
     }
@@ -163,8 +157,8 @@ export default class UpdateCategory extends Component {
 
         return (
             <div>
-                {this.renderReload()}
-                {/* {this.renderRedirectToHome()} */}
+               
+                {this.renderRedirectToHome()}
                 <section className="currentMovies">
                 <h2 className="homeheader ">{this.props.match.params.title}</h2>
                 <h3>Current Movie Titles in {this.props.match.params.title}</h3>
