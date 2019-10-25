@@ -17,7 +17,7 @@ export default class UpdateCategory extends Component {
             searchedMovieList: []
         };
         this.setReload = this.setReload.bind(this);
-this.renderReload = this.renderReload.bind(this);
+        this.renderReload = this.renderReload.bind(this);
         this.setRedirectHome = this.setRedirect.bind(this);
         this.renderRedirectToHome = this.renderRedirect.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -66,12 +66,13 @@ this.renderReload = this.renderReload.bind(this);
             return <Redirect to={`/trailer-tracker-frontend/Category/update/${this.props.match.params.title}`} />;
         }
     }
+
     handleSubmit(evt) {
         evt.preventDefault();
 
         let updatedTitle = this.state.updatedTitle || this.props.match.params.title;
         axios.put(
-            `https://trailerstracker.herokuapp.com/Category//${this.props.match.params.title}`,
+            `https://trailerstracker.herokuapp.com/Category/${this.props.match.params.title}`,
             { title: updatedTitle,
                 movies: this.state.movies
             },
