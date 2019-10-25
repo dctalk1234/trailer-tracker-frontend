@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/trailer-tracker-frontend/precache-manifest.ec7e9dee36ba37064090e1ab2299f5a3.js"
+  "/trailer-tracker-frontend/precache-manifest.4bd08f3b2ab15861c01c729f98770259.js"
 );
 
 self.addEventListener('message', (event) => {
