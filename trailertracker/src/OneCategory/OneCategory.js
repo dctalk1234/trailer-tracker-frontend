@@ -53,11 +53,11 @@ export default class OneCategory extends Component {
     let list = this.state.movies.map(movie => {
       return (
         <div className="onePoster">
-          <a href={`/movie/${movie.title}`}>
+          <Link href={`/trailer-tracker-frontend/movie/${movie.title}`}>
             <img className="poster" src={movie.poster}></img>
             <h6 className="posterName">{movie.title}</h6>
 
-          </a>
+          </Link>
         </div>
       );
     });
