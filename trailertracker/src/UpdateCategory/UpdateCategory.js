@@ -31,7 +31,7 @@ export default class UpdateCategory extends Component {
     componentDidMount() {
         axios.get(`https://trailerstracker.herokuapp.com/Category/${this.props.match.params.title}`)
             .then(res => {
-                // console.log(...res.data.movies);
+                
                 this.setState({
                     movies: [...res.data.movies]
                 });
@@ -87,12 +87,12 @@ export default class UpdateCategory extends Component {
         evt.preventDefault();
         if (evt.target.value !== '') {
             this.setState({updatedTitle: evt.target.value});
-            // console.log(this.state.updatedTitle);
+            
         }
     }
     findMovie(evt) {
         this.setState({ search: evt.target.value });
-        //console.log(evt.target.value);
+   
         let filteredMovie = this.state.originalMovieList.filter(
             (movieTitle) => movieTitle.title.toLowerCase().includes(evt.target.value.toLowerCase()));
         this.setState({ movieList: filteredMovie });
@@ -119,7 +119,7 @@ export default class UpdateCategory extends Component {
             { headers: { 'Content-Type': 'application/json' } })
             .then(res => {
                 this.setState({searchedMovieList: res.data.Search} );
-                // console.log(res.data.Search);
+                
             });
     }
     searchTitle(evt) {
@@ -143,17 +143,14 @@ export default class UpdateCategory extends Component {
         console.log(newMovieObject);
         axios.get(`https://trailerstracker.herokuapp.com/Movie/new/${newMovieTitle}`)
             .then(res => {
-                // this.setState({movies: [...this.state.movies] } );
+               
                 this.setReload();
                 // window.location.reload();
-                // console.log(newMovieObject);
-                // console.log(res);
+              
             })
     }
     render() {
-// console.log(this.state.originalMovieList);
-// console.log(this.state.movieList);
-//console.log(this.state.movies);
+
         let movieTitles = this.state.movies.map(item => {
             return (
                 <div key={item.title}>
@@ -163,7 +160,7 @@ export default class UpdateCategory extends Component {
                 </div>
             );
         });
-//console.log(movieTitles);
+
         return (
             <div>
                 {this.renderReload()}
