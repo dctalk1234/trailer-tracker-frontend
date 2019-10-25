@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import "../NewCategory/NewCategory.css";
 
 export default class NewCategory extends Component {
     constructor() {

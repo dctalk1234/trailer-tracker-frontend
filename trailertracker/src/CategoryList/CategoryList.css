@@ -1,0 +1,18 @@
+.movieList {
+    list-style: none;
+    display: block;
+    margin: 5px auto;
+    width: 50%;
+    text-decoration: underline;
+    text-decoration-color: #f25a38;
+    text-decoration-style: double;
+    background: #f25a38;
+}
+.homeheader{
+    margin-bottom: 40px;
+}
+
+.nav-item {
+    text-decoration: underline;
+    text-decoration-color: #f25a38;
+}
