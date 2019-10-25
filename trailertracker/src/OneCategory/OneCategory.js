@@ -81,7 +81,7 @@ export default class OneCategory extends Component {
           <button className="backtoHome">Back To Home</button>
         </Link>
 
-        <Link to={`/Category/update/${this.props.match.params.title}`}>
+        <Link to={`/trailer-tracker-frontend/Category/update/${this.props.match.params.title}`}>
           <button className="updatecat">Update this Category </button>
         </Link>
       </div>
