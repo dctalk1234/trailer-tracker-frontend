@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 //import movieList from './movieData';
 import axios from "axios";
-
+import "./Movie.css"
 
 export default class Movie extends Component {
     constructor() {
@@ -19,7 +19,8 @@ export default class Movie extends Component {
                 console.log(res.data);
                 this.setState({
                     title: res.data.title,
-                    trailer: res.data.trailer
+                    trailer: res.data.trailer,
+                    releaseYear: res.data.releaseYear
                 });
             })
             .catch(error => {
@@ -32,7 +33,9 @@ export default class Movie extends Component {
         return (
             <div >
                 <h3>{movie.title}</h3>
+                <h4>Released in: {movie.releaseYear}</h4>
                 <iframe
+                    className="movie"
                     title={movie.title}
                     width="627"
                     height="470"

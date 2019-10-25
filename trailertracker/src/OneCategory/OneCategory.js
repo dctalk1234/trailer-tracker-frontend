@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
+import "./OneCategory.css";
 import axios from "axios";
 
 export default class OneCategory extends Component {
@@ -51,20 +52,26 @@ export default class OneCategory extends Component {
   render() {
     let list = this.state.movies.map(movie => {
       return (
-        <div>
-          <a href={`/movie/${movie.title}`}>
+        <div className="onePoster">
+          <Link href={`/trailer-tracker-frontend/movie/${movie.title}`}>
             <img className="poster" src={movie.poster}></img>
-          </a>
+            <h6 className="posterName">{movie.title}</h6>
+
+          </Link>
         </div>
       );
     });
     console.log(this.state.redirect);
 
     return (
-      <div>
+      <div >
         {this.renderRedirect()}
         <h3 className="homeheader">The Chosen Category is {this.props.match.params.title}</h3>
-        {list}
+        <div className="oneCatposterHolder">
+
+          {list}
+        </div>
+
 
         <button onClick={this.deleteCategory} className="deleteCategory">
           Delete This Category
@@ -74,7 +81,7 @@ export default class OneCategory extends Component {
           <button className="backtoHome">Back To Home</button>
         </Link>
 
-        <Link to={`/Category/update/${this.props.match.params.title}`}>
+        <Link to={`/trailer-tracker-frontend/Category/update/${this.props.match.params.title}`}>
           <button className="updatecat">Update this Category </button>
         </Link>
       </div>
