@@ -31,7 +31,7 @@ class CategoryList extends Component {
 			return (
 				<div key={item.title}>
 					<ul>
-						<Link to={`/category/${item.title}`}>{item.title}</Link>
+						<Link to={`/trailer-tracker-frontend/category/${item.title}`}>{item.title}</Link>
 					</ul>
 				</div>
 			);
