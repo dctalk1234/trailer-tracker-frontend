@@ -29,9 +29,14 @@ The app features three main pages; the Home page, the About page, and the New Ca
 > ![](./public/Images/FrontEnd-Components.png)
 > ![](./public/Images/BackEnd.png)
 
-The team initially decided to split into pairs and to divide the front end and back end duties evenly between the pairs.
 
-## Technical Details
+## Our Process
+The team initially decided to split into pairs and to divide the front end and back end duties evenly between the pairs.
+After intitial setup of front-end and backend team members divided evenly on both fron-end and backend tasks. 
+
+
+
+## Technologies Used
 
 The front end of the app was built with:
 
@@ -39,15 +44,11 @@ The front end of the app was built with:
 - React.js
 - Axios
 - CSS
+- Bootstrap (styling)
 
-The back end of the app was built with:
+The backend repo is hosted on GitHub at https://github.com/dctalk1234/trailer-tracker-backend
 
-- Express.js
-- MongoDB
-- Mongoose
-- Axios
-
-The app was tested with Postman, GitHub was used for version control, and deployment was via Heroku.
+The app was tested with Postman, GitHub was used for version control, and deployment was via Heroku and github pages
 
 ## Issues
 
