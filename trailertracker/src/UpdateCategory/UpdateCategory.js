@@ -18,7 +18,7 @@ export default class UpdateCategory extends Component {
         };
         // this.setReload = this.setReload.bind(this);
         // this.renderReload = this.renderReload.bind(this);
-        this.setRedirectHome = this.setRedirectHome.bind(this);
+        this.setRedirectToHome = this.setRedirectToHome.bind(this);
         this.renderRedirectToHome = this.renderRedirectToHome.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -48,7 +48,7 @@ export default class UpdateCategory extends Component {
                 console.log(error);
             })
     }
-    setRedirectHome() {
+    setRedirectToHome() {
         this.setState({ redirect: true });
     }
 
@@ -80,7 +80,7 @@ export default class UpdateCategory extends Component {
             })
             .then(res => {
                 console.log(res);
-                this.setRedirect();
+                this.setRedirectToHome();
             })
     }
     handleChange(evt) {
