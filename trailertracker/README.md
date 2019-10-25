@@ -2,7 +2,7 @@
 
 ## Description
 
-The Trailer Tracker app was created let users search an extensive database of movies, and organize them into _any_ kind of category that the user wants to create.
+The Trailer Tracker app was created to let users search an extensive database of movies, and organize them into _any_ kind of category that the user wants to create.
 
 - Favorite Movies
 - Happy Movies
