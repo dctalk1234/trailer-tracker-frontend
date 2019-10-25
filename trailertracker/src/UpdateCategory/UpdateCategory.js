@@ -8,6 +8,7 @@ export default class UpdateCategory extends Component {
         super();
         this.state = {
             redirect: false,
+            reload: false,
             movies: [],
             updatedTitle: '',
             search: '',
@@ -15,8 +16,10 @@ export default class UpdateCategory extends Component {
             originalMovieList: [],
             searchedMovieList: []
         };
-        this.setRedirect = this.setRedirect.bind(this);
-        this.renderRedirect = this.renderRedirect.bind(this);
+        this.setReload = this.setReload.bind(this);
+this.renderReload
+        this.setRedirectHome = this.setRedirect.bind(this);
+        this.renderRedirectToHome = this.renderRedirect.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.findMovie = this.findMovie.bind(this);
@@ -45,13 +48,22 @@ export default class UpdateCategory extends Component {
                 console.log(error);
             })
     }
-    setRedirect() {
+    setRedirectHome() {
         this.setState({ redirect: true });
     }
 
-    renderRedirect() {
+    renderRedirectToHome() {
         if (this.state.redirect) {
             return <Redirect to="/trailer-tracker-frontend" />;
+        }
+    }
+    setReload() {
+        this.setState({reload: true});
+    }
+
+    renderReload() {
+        if (this.state.reload) {
+            return <Redirect to={`/trailer-tracker-frontend/Category/update/${this.props.match.params.title}`} />;
         }
     }
     handleSubmit(evt) {
@@ -131,7 +143,7 @@ export default class UpdateCategory extends Component {
         axios.get(`https://trailerstracker.herokuapp.com/Movie/new/${newMovieTitle}`)
             .then(res => {
                 // this.setState({movies: [...this.state.movies] } );
-                window.location.reload();
+                this.setReload();
                 // console.log(newMovieObject);
                 // console.log(res);
             })
@@ -152,6 +164,7 @@ export default class UpdateCategory extends Component {
 //console.log(movieTitles);
         return (
             <div>
+                {this.renderReload()}
                 {this.renderRedirect()}
                 <section className="currentMovies">
                 <h2 className="homeheader ">{this.props.match.params.title}</h2>
