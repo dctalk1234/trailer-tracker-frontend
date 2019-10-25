@@ -7,7 +7,7 @@ export default class About extends Component {
                 <h2 className="homeheader">Meet the developers:</h2>
                 <a href="https://nathanielstack.dev/">
                     <h3>Nathaniel Stack</h3></a>
-                <p></p>
+                <p>As a Full-Stack Developer and YouTube creative I bring enduring passion to my every endeavor. A natural born leader, I strive in every situation to lead by example. I am always excited to learn something new and gain diverse perspectives from my coworkers.  I love to explore diverse industries through the lens of software engineering.</p>
                 <a href="https://www.linkedin.com/in/shamira-jones/">
                     <h3>Shamira Jones</h3></a>
                 <p>Shamira is a Graphic/ Web Designer, Full Stack Web Developer and Guitar player. She loves to turn complex concepts into clean, functional, beautiful realities.Her passion to create is motivated by her belief that part of truly living is to create. </p>
