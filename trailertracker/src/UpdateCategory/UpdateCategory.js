@@ -18,8 +18,8 @@ export default class UpdateCategory extends Component {
         };
         this.setReload = this.setReload.bind(this);
         this.renderReload = this.renderReload.bind(this);
-        this.setRedirectHome = this.setRedirect.bind(this);
-        this.renderRedirectToHome = this.renderRedirect.bind(this);
+        this.setRedirectHome = this.setRedirectHome.bind(this);
+        this.renderRedirectToHome = this.renderRedirectToHome.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.findMovie = this.findMovie.bind(this);
