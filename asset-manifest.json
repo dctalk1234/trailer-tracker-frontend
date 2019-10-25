@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/trailer-tracker-frontend/static/css/main.74400887.chunk.css",
-    "main.js": "/trailer-tracker-frontend/static/js/main.d42b93f5.chunk.js",
-    "main.js.map": "/trailer-tracker-frontend/static/js/main.d42b93f5.chunk.js.map",
+    "main.js": "/trailer-tracker-frontend/static/js/main.eaeea9d8.chunk.js",
+    "main.js.map": "/trailer-tracker-frontend/static/js/main.eaeea9d8.chunk.js.map",
     "runtime-main.js": "/trailer-tracker-frontend/static/js/runtime-main.c61ca98f.js",
     "runtime-main.js.map": "/trailer-tracker-frontend/static/js/runtime-main.c61ca98f.js.map",
     "static/js/2.ce69cc4e.chunk.js": "/trailer-tracker-frontend/static/js/2.ce69cc4e.chunk.js",
     "static/js/2.ce69cc4e.chunk.js.map": "/trailer-tracker-frontend/static/js/2.ce69cc4e.chunk.js.map",
     "index.html": "/trailer-tracker-frontend/index.html",
-    "precache-manifest.e8b75d51ae4b44c791cfbeaae5b26ef4.js": "/trailer-tracker-frontend/precache-manifest.e8b75d51ae4b44c791cfbeaae5b26ef4.js",
+    "precache-manifest.a3cbc8ba7ba435a5b116e941e4ae2e29.js": "/trailer-tracker-frontend/precache-manifest.a3cbc8ba7ba435a5b116e941e4ae2e29.js",
     "service-worker.js": "/trailer-tracker-frontend/service-worker.js",
     "static/css/main.74400887.chunk.css.map": "/trailer-tracker-frontend/static/css/main.74400887.chunk.css.map"
   },
@@ -16,6 +16,6 @@
     "static/js/runtime-main.c61ca98f.js",
     "static/js/2.ce69cc4e.chunk.js",
     "static/css/main.74400887.chunk.css",
-    "static/js/main.d42b93f5.chunk.js"
+    "static/js/main.eaeea9d8.chunk.js"
   ]
 }
