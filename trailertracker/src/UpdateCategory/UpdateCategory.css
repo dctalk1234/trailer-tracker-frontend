@@ -1,0 +1,32 @@
+.currentMovies {
+    /*background-color: red;*/
+    padding: 20px;
+    margin: 5px;
+}
+.movieDBSearch {
+    /*background-color: darkblue;*/
+    padding: 20px;
+    margin: 5px;
+    border: solid 5px #f25a38;
+}
+.OMBDSearch {
+    padding: 20px;
+    margin: 5px;
+
+}
+h4 {
+    padding: 5px;
+}
+button {
+    margin: 10px;
+}
+imput {
+    margin: 5px;
+}
+li {
+    padding: 2px;
+}
+label {
+    margin: 5px;
+    padding: 5px;
+}
