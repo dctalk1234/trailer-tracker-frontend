@@ -24,11 +24,6 @@ The app features the following main pages; Home, About, and New Category in navi
 
 - From the Category List on the homepage, you can select any single movie in that category and watch the trailer.
 
-## Planning
-
-> ## Wireframe Images
->
-> ![](./public/Images/newFramework.png) > ![](./public/Images/FrontEnd-Components.png) > ![](./public/Images/BackEnd.png)
 
 ## Our Process
 
